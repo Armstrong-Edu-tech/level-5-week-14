@@ -1,0 +1,18 @@
+export async function getServerSideProps() {
+  try{const res = await fetch('https://dummyjson.com/posts/1');
+  const post = await res.json();
+  return { props: { post } };
+} 
+ catch (error) {
+    return { props: { post: null, error: 'Data could not be loaded' } };
+  }
+}
+
+export default function Page({ post }) {
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </div>
+  );
+}
