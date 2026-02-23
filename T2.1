@@ -1,0 +1,25 @@
+export async function getStaticProps() {
+  // Fetch data at build time
+  const res = await fetch('https://dummyjson.com/posts');
+  const data = await res.json(); // data.posts contains the array
+
+  // Return props
+  return {
+    props: {
+      posts: data.posts, // only the array
+    },
+  };
+}
+
+export default function Blog({ posts }) {
+  return (
+    <div>
+      <h1>Blog Posts</h1>
+      <ul>
+        {posts.map((post) => ( // render first 5 posts
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
