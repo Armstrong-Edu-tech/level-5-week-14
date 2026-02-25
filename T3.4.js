@@ -26,8 +26,7 @@ export default function handler(req, res) {
     res.status(200).json({ id: mockUser.id, name: mockUser.name, email: mockUser.email })
   } 
   else {
-    // Method not allowed
-    res.setHeader("Allow", ["POST", "GET"])
+ 
     res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 }
